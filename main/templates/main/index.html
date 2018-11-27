@@ -1,4 +1,23 @@
 {% extends "main/base.html"%}
 {% load staticfiles %}
 {% block content %}
+<div id="map"></div>
 {% endblock content %}
+{% block script %}
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1Ijoib3Blbm1pbmQiLCJhIjoiY2ptMXNheWJvMmpmdTNwbDhkcXdjYm1mayJ9.gnZvWE6i2LBCKsHO_BAMuA';
+  const map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/openmind/cjo2m41eo52h82sqm4a97icrm',
+  center: [0.623412, 6.897599],
+  zoom: 14.5
+  });
+
+  map.addControl(new mapboxgl.GeolocateControl({
+    positionOptions: {
+        enableHighAccuracy: true
+    },
+    trackUserLocation: true
+}));
+</script>
+{% endblock script %}
