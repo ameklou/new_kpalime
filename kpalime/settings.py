@@ -37,7 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.gis',
     'main',
+    'leaflet',
+    'djgeojson',
 ]
 
 MIDDLEWARE = [
@@ -76,8 +79,12 @@ WSGI_APPLICATION = 'kpalime.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'kpalime',
+        'USER': 'akd',
+        'PASSWORD': 'open@bunshin',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
@@ -119,3 +126,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT= 'static'
+
+
+LEAFLET_CONFIG={
+    'DEFAULT_CENTER':(6.9, 0.63),
+    'DEFAULT_ZOOM':16,
+    'MIN_ZOOM':10,
+    'MAX_ZOOM':18,
+    'RESET_VIEW': False,
+    'TILES': 'https://api.mapbox.com/styles/v1/mapbox/streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoib3Blbm1pbmQiLCJhIjoiY2ptMXNheWJvMmpmdTNwbDhkcXdjYm1mayJ9.gnZvWE6i2LBCKsHO_BAMuA'
+}
